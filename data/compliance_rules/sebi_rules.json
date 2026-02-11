@@ -1,0 +1,64 @@
+[
+    {
+        "id": "sebi_lodr_reg31",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 31 - Shareholding Pattern",
+        "description": "Listed entity shall submit shareholding pattern within specified timelines",
+        "requirements": "Disclosure of promoter shareholding, public shareholding, institutional holdings",
+        "keywords": [
+            "shareholding pattern",
+            "promoter",
+            "public shareholding",
+            "institutional investors"
+        ],
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_lodr_reg33",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 33 - Financial Results",
+        "description": "Quarterly and annual financial results disclosure requirements",
+        "requirements": "Audited/limited review financial results, segment reporting, exceptional items",
+        "keywords": [
+            "financial results",
+            "quarterly",
+            "annual",
+            "segment reporting"
+        ],
+        "severity": "critical",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_brsr",
+        "framework": "sebi",
+        "name": "SEBI BRSR - Business Responsibility and Sustainability Reporting",
+        "description": "ESG disclosures covering environmental, social and governance parameters",
+        "requirements": "Disclosures on environmental impact, social welfare, governance practices, stakeholder engagement",
+        "keywords": [
+            "esg",
+            "sustainability",
+            "environmental",
+            "social",
+            "governance",
+            "brsr"
+        ],
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_lodr_reg23",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 23 - Related Party Transactions",
+        "description": "Prior approval and disclosure requirements for related party transactions",
+        "requirements": "Material RPTs require shareholder approval, disclosure in financial statements and annual report",
+        "keywords": [
+            "related party transactions",
+            "rpt",
+            "material transactions",
+            "shareholder approval"
+        ],
+        "severity": "critical",
+        "mandatory": true
+    }
+]

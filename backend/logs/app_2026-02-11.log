@@ -1,0 +1,9 @@
+2026-02-11 08:30:00 | INFO     | app.core.logging_config:configure_logging:46 - Logging configured - Level: INFO
+2026-02-11 08:30:10 | INFO     | app.core.logging_config:configure_logging:46 - Logging configured - Level: INFO
+2026-02-11 08:38:04 | INFO     | app.core.logging_config:configure_logging:46 - Logging configured - Level: INFO
+2026-02-11 08:38:43 | INFO     | app.vector_store.chroma_client:__init__:28 - ChromaDB initialized: compliance_documents
+2026-02-11 08:38:43 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 08:38:44 | INFO     | app.main:lifespan:21 - Starting AI Compliance Engine v1.0.0
+2026-02-11 08:38:44 | INFO     | app.main:lifespan:22 - Environment: development
+2026-02-11 08:38:44 | INFO     | app.main:lifespan:27 - Database initialized successfully
+2026-02-11 09:10:47 | INFO     | app.main:lifespan:34 - Shutting down application
