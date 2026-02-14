@@ -107,6 +107,7 @@ backend/data/raw/
 data/raw/
 *.pdf
 *.docx
+*.exe
 
 # Model Cache
 .cache/
