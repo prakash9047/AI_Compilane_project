@@ -46,6 +46,7 @@ data/compliance.db
 *.log
 logs/
 *.log.*
+errors_*.log
 
 # IDE
 .vscode/
@@ -93,10 +94,19 @@ notes*.md
 # Ignore markdown in reports
 backend/reports/*.md
 
-# Vector Store
+# Vector Store & Embeddings
 data/vector_store/
+data/embeddings/
+backend/data/embeddings/
 *.faiss
 *.index
+*.bin
+
+# Raw Data & Uploads
+backend/data/raw/
+data/raw/
+*.pdf
+*.docx
 
 # Model Cache
 .cache/
