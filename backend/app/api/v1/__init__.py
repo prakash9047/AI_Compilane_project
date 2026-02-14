@@ -2,7 +2,7 @@
 API v1 router aggregator.
 """
 from fastapi import APIRouter
-from app.api.v1.endpoints import documents, validation, reports, search
+from app.api.v1.endpoints import documents, validation, reports, search, chat
 
 api_router = APIRouter()
 
@@ -10,3 +10,4 @@ api_router.include_router(documents.router, prefix="/documents", tags=["Document
 api_router.include_router(validation.router, prefix="/validation", tags=["Validation"])
 api_router.include_router(reports.router, prefix="/reports", tags=["Reports"])
 api_router.include_router(search.router, prefix="/search", tags=["Search"])
+api_router.include_router(chat.router, prefix="/chat", tags=["Chat"])

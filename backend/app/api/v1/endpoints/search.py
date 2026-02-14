@@ -34,10 +34,21 @@ async def search_documents(
             document_id=document_id
         )
         
+        # Format results to include proper metadata
+        formatted_results = []
+        for result in results:
+            formatted_results.append({
+                "text": result.get("content", ""),
+                "document_id": result.get("metadata", {}).get("document_id", "N/A"),
+                "title": result.get("metadata", {}).get("title", "Unknown"),
+                "score": 1.0 - result.get("distance", 1.0) if result.get("distance") is not None else 0.0,
+                "metadata": result.get("metadata", {})
+            })
+        
         return {
             "query": query,
-            "total_results": len(results),
-            "results": results
+            "total_results": len(formatted_results),
+            "results": formatted_results
         }
     
     except Exception as e:

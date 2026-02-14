@@ -7,3 +7,240 @@
 2026-02-11 08:38:44 | INFO     | app.main:lifespan:22 - Environment: development
 2026-02-11 08:38:44 | INFO     | app.main:lifespan:27 - Database initialized successfully
 2026-02-11 09:10:47 | INFO     | app.main:lifespan:34 - Shutting down application
+2026-02-11 09:10:51 | INFO     | app.core.logging_config:configure_logging:46 - Logging configured - Level: INFO
+2026-02-11 09:11:10 | INFO     | app.vector_store.chroma_client:__init__:28 - ChromaDB initialized: compliance_documents
+2026-02-11 09:11:10 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 09:11:10 | INFO     | app.main:lifespan:21 - Starting AI Compliance Engine v1.0.0
+2026-02-11 09:11:10 | INFO     | app.main:lifespan:22 - Environment: development
+2026-02-11 09:11:10 | INFO     | app.main:lifespan:27 - Database initialized successfully
+2026-02-11 09:11:10 | INFO     | app.api.v1.endpoints.documents:upload_document:88 - Document uploaded: 1 - 89094asb-aps2918-app1.pdf
+2026-02-11 09:11:10 | INFO     | app.workers.tasks:process_document_task:25 - Processing document 1
+2026-02-11 09:11:10 | INFO     | app.engines.extraction.extraction_engine:__init__:27 - Extraction engine initialized
+2026-02-11 09:11:10 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:59 - Extracting PDF: ./data/raw\1_89094asb-aps2918-app1.pdf
+2026-02-11 09:11:12 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:115 - PDF extraction complete: 20740 chars, 0 tables
+2026-02-11 09:11:12 | INFO     | app.engines.segmentation.segmentation_engine:__init__:21 - Segmentation engine initialized
+2026-02-11 09:11:12 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:34 - Starting document segmentation
+2026-02-11 09:11:12 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:92 - Segmentation complete: 40 segments created
+2026-02-11 09:11:15 | INFO     | app.vector_store.chroma_client:__init__:28 - ChromaDB initialized: compliance_documents
+2026-02-11 09:11:15 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 09:11:15 | INFO     | app.engines.rag.rag_pipeline:index_document:35 - Indexing document 1 with 40 segments
+2026-02-11 09:11:47 | INFO     | app.vector_store.chroma_client:add_documents:43 - Added 40 documents to ChromaDB
+2026-02-11 09:11:47 | INFO     | app.engines.rag.rag_pipeline:index_document:62 - Document 1 indexed successfully
+2026-02-11 09:11:47 | INFO     | app.workers.tasks:process_document_task:72 - Document 1 processed successfully
+2026-02-11 09:13:33 | INFO     | app.api.v1.endpoints.validation:validate_document:51 - Validation task started for document 1
+2026-02-11 09:13:33 | INFO     | app.workers.tasks:validate_document_task:91 - Validating document 1 against ind_as
+2026-02-11 09:13:33 | INFO     | app.engines.compliance.rule_loader:__init__:21 - Rule loader initialized with path: data\compliance_rules
+2026-02-11 09:13:33 | INFO     | app.engines.compliance.compliance_engine:__init__:27 - Compliance engine initialized with openai
+2026-02-11 09:13:33 | INFO     | app.engines.compliance.compliance_engine:validate_document:46 - Starting compliance validation for framework: ind_as
+2026-02-11 09:13:33 | WARNING  | app.engines.compliance.rule_loader:load_rules:42 - Rule file not found: data\compliance_rules\ind_as_rules.json
+2026-02-11 09:13:33 | WARNING  | app.engines.compliance.compliance_engine:validate_document:52 - No rules found for framework: ind_as
+2026-02-11 09:13:33 | INFO     | app.workers.tasks:validate_document_task:136 - Validation complete for document 1
+2026-02-11 09:17:10 | INFO     | app.api.v1.endpoints.documents:upload_document:88 - Document uploaded: 2 - 89094asb-aps2918-app1.pdf
+2026-02-11 09:17:10 | INFO     | app.workers.tasks:process_document_task:25 - Processing document 2
+2026-02-11 09:17:10 | INFO     | app.engines.extraction.extraction_engine:__init__:27 - Extraction engine initialized
+2026-02-11 09:17:10 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:59 - Extracting PDF: ./data/raw\2_89094asb-aps2918-app1.pdf
+2026-02-11 09:17:12 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:115 - PDF extraction complete: 20740 chars, 0 tables
+2026-02-11 09:17:13 | INFO     | app.engines.segmentation.segmentation_engine:__init__:21 - Segmentation engine initialized
+2026-02-11 09:17:13 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:34 - Starting document segmentation
+2026-02-11 09:17:13 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:92 - Segmentation complete: 40 segments created
+2026-02-11 09:17:16 | INFO     | app.vector_store.chroma_client:__init__:28 - ChromaDB initialized: compliance_documents
+2026-02-11 09:17:16 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 09:17:16 | INFO     | app.engines.rag.rag_pipeline:index_document:35 - Indexing document 2 with 40 segments
+2026-02-11 09:17:19 | INFO     | app.vector_store.chroma_client:add_documents:43 - Added 40 documents to ChromaDB
+2026-02-11 09:17:19 | INFO     | app.engines.rag.rag_pipeline:index_document:62 - Document 2 indexed successfully
+2026-02-11 09:17:20 | INFO     | app.workers.tasks:process_document_task:72 - Document 2 processed successfully
+2026-02-11 09:17:21 | INFO     | app.api.v1.endpoints.validation:validate_document:51 - Validation task started for document 1
+2026-02-11 09:17:21 | INFO     | app.workers.tasks:validate_document_task:91 - Validating document 1 against ind_as
+2026-02-11 09:17:21 | INFO     | app.engines.compliance.rule_loader:__init__:21 - Rule loader initialized with path: data\compliance_rules
+2026-02-11 09:17:21 | INFO     | app.engines.compliance.compliance_engine:__init__:27 - Compliance engine initialized with openai
+2026-02-11 09:17:21 | INFO     | app.engines.compliance.compliance_engine:validate_document:46 - Starting compliance validation for framework: ind_as
+2026-02-11 09:17:21 | WARNING  | app.engines.compliance.rule_loader:load_rules:42 - Rule file not found: data\compliance_rules\ind_as_rules.json
+2026-02-11 09:17:21 | WARNING  | app.engines.compliance.compliance_engine:validate_document:52 - No rules found for framework: ind_as
+2026-02-11 09:17:21 | INFO     | app.workers.tasks:validate_document_task:136 - Validation complete for document 1
+2026-02-11 09:22:22 | INFO     | app.api.v1.endpoints.documents:upload_document:88 - Document uploaded: 3 - 89094asb-aps2918-app1.pdf
+2026-02-11 09:22:22 | INFO     | app.workers.tasks:process_document_task:25 - Processing document 3
+2026-02-11 09:22:23 | INFO     | app.engines.extraction.extraction_engine:__init__:27 - Extraction engine initialized
+2026-02-11 09:22:23 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:59 - Extracting PDF: ./data/raw\3_89094asb-aps2918-app1.pdf
+2026-02-11 09:22:25 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:115 - PDF extraction complete: 20740 chars, 0 tables
+2026-02-11 09:22:25 | INFO     | app.engines.segmentation.segmentation_engine:__init__:21 - Segmentation engine initialized
+2026-02-11 09:22:25 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:34 - Starting document segmentation
+2026-02-11 09:22:25 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:92 - Segmentation complete: 40 segments created
+2026-02-11 09:22:28 | INFO     | app.vector_store.chroma_client:__init__:28 - ChromaDB initialized: compliance_documents
+2026-02-11 09:22:28 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 09:22:28 | INFO     | app.engines.rag.rag_pipeline:index_document:35 - Indexing document 3 with 40 segments
+2026-02-11 09:22:32 | INFO     | app.vector_store.chroma_client:add_documents:43 - Added 40 documents to ChromaDB
+2026-02-11 09:22:32 | INFO     | app.engines.rag.rag_pipeline:index_document:62 - Document 3 indexed successfully
+2026-02-11 09:22:32 | INFO     | app.workers.tasks:process_document_task:72 - Document 3 processed successfully
+2026-02-11 09:22:36 | INFO     | app.api.v1.endpoints.validation:validate_document:51 - Validation task started for document 3
+2026-02-11 09:22:36 | INFO     | app.workers.tasks:validate_document_task:91 - Validating document 3 against ind_as
+2026-02-11 09:22:36 | INFO     | app.engines.compliance.rule_loader:__init__:21 - Rule loader initialized with path: data\compliance_rules
+2026-02-11 09:22:36 | INFO     | app.engines.compliance.compliance_engine:__init__:27 - Compliance engine initialized with openai
+2026-02-11 09:22:36 | INFO     | app.engines.compliance.compliance_engine:validate_document:46 - Starting compliance validation for framework: ind_as
+2026-02-11 09:22:36 | WARNING  | app.engines.compliance.rule_loader:load_rules:42 - Rule file not found: data\compliance_rules\ind_as_rules.json
+2026-02-11 09:22:36 | WARNING  | app.engines.compliance.compliance_engine:validate_document:52 - No rules found for framework: ind_as
+2026-02-11 09:22:36 | INFO     | app.workers.tasks:validate_document_task:136 - Validation complete for document 3
+2026-02-11 21:56:21 | INFO     | app.core.logging_config:configure_logging:46 - Logging configured - Level: INFO
+2026-02-11 21:57:29 | INFO     | app.vector_store.chroma_client:__init__:28 - ChromaDB initialized: compliance_documents
+2026-02-11 21:57:29 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 21:57:29 | INFO     | app.main:lifespan:21 - Starting AI Compliance Engine v1.0.0
+2026-02-11 21:57:29 | INFO     | app.main:lifespan:22 - Environment: development
+2026-02-11 21:57:29 | INFO     | app.main:lifespan:27 - Database initialized successfully
+2026-02-11 21:58:18 | INFO     | app.api.v1.endpoints.documents:upload_document:88 - Document uploaded: 4 - 89094asb-aps2918-app1.pdf
+2026-02-11 21:58:18 | INFO     | app.workers.tasks:process_document_task:25 - Processing document 4
+2026-02-11 21:58:18 | INFO     | app.engines.extraction.extraction_engine:__init__:27 - Extraction engine initialized
+2026-02-11 21:58:18 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:59 - Extracting PDF: ./data/raw\4_89094asb-aps2918-app1.pdf
+2026-02-11 21:58:22 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:115 - PDF extraction complete: 20740 chars, 0 tables
+2026-02-11 21:58:22 | INFO     | app.engines.segmentation.segmentation_engine:__init__:21 - Segmentation engine initialized
+2026-02-11 21:58:22 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:34 - Starting document segmentation
+2026-02-11 21:58:22 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:92 - Segmentation complete: 40 segments created
+2026-02-11 21:58:25 | INFO     | app.vector_store.chroma_client:__init__:28 - ChromaDB initialized: compliance_documents
+2026-02-11 21:58:25 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 21:58:25 | INFO     | app.engines.rag.rag_pipeline:index_document:35 - Indexing document 4 with 40 segments
+2026-02-11 21:58:36 | INFO     | app.vector_store.chroma_client:add_documents:43 - Added 40 documents to ChromaDB
+2026-02-11 21:58:36 | INFO     | app.engines.rag.rag_pipeline:index_document:62 - Document 4 indexed successfully
+2026-02-11 21:58:36 | INFO     | app.workers.tasks:process_document_task:72 - Document 4 processed successfully
+2026-02-11 21:59:30 | INFO     | app.api.v1.endpoints.validation:validate_document:51 - Validation task started for document 4
+2026-02-11 21:59:30 | INFO     | app.workers.tasks:validate_document_task:91 - Validating document 4 against sebi
+2026-02-11 21:59:30 | INFO     | app.engines.compliance.rule_loader:__init__:21 - Rule loader initialized with path: data\compliance_rules
+2026-02-11 21:59:31 | INFO     | app.engines.compliance.compliance_engine:__init__:27 - Compliance engine initialized with openai
+2026-02-11 21:59:31 | INFO     | app.engines.compliance.compliance_engine:validate_document:46 - Starting compliance validation for framework: sebi
+2026-02-11 21:59:31 | WARNING  | app.engines.compliance.rule_loader:load_rules:42 - Rule file not found: data\compliance_rules\sebi_rules.json
+2026-02-11 21:59:31 | WARNING  | app.engines.compliance.compliance_engine:validate_document:52 - No rules found for framework: sebi
+2026-02-11 21:59:31 | INFO     | app.workers.tasks:validate_document_task:136 - Validation complete for document 4
+2026-02-11 22:01:07 | INFO     | app.engines.rag.rag_pipeline:search:81 - Searching for: what is the document abut
+2026-02-11 22:01:08 | INFO     | app.engines.rag.rag_pipeline:search:103 - Found 5 results
+2026-02-11 23:36:13 | INFO     | app.main:lifespan:34 - Shutting down application
+2026-02-11 23:36:17 | INFO     | app.core.logging_config:configure_logging:46 - Logging configured - Level: INFO
+2026-02-11 23:36:37 | INFO     | app.vector_store.chroma_client:__init__:27 - ChromaDB initialized: compliance_documents
+2026-02-11 23:36:37 | INFO     | app.vector_store.chroma_client:__init__:28 - Collection count: 0
+2026-02-11 23:36:37 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 23:36:38 | INFO     | app.services.llm_service:__init__:21 - LLM service initialized with model: gpt-4o-mini
+2026-02-11 23:36:40 | INFO     | app.vector_store.chroma_client:__init__:27 - ChromaDB initialized: compliance_documents
+2026-02-11 23:36:40 | INFO     | app.vector_store.chroma_client:__init__:28 - Collection count: 0
+2026-02-11 23:36:40 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 23:36:40 | INFO     | app.services.chat_service:__init__:19 - Chat service initialized
+2026-02-11 23:36:40 | INFO     | app.main:lifespan:21 - Starting AI Compliance Engine v1.0.0
+2026-02-11 23:36:40 | INFO     | app.main:lifespan:22 - Environment: development
+2026-02-11 23:36:40 | INFO     | app.main:lifespan:27 - Database initialized successfully
+2026-02-11 23:36:40 | INFO     | app.api.v1.endpoints.documents:upload_document:88 - Document uploaded: 5 - 89094asb-aps2918-app1.pdf
+2026-02-11 23:36:40 | INFO     | app.workers.tasks:process_document_task:25 - Processing document 5
+2026-02-11 23:36:40 | INFO     | app.engines.extraction.extraction_engine:__init__:27 - Extraction engine initialized
+2026-02-11 23:36:40 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:59 - Extracting PDF: ./data/raw\5_89094asb-aps2918-app1.pdf
+2026-02-11 23:36:42 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:115 - PDF extraction complete: 20740 chars, 0 tables
+2026-02-11 23:36:42 | INFO     | app.engines.segmentation.segmentation_engine:__init__:21 - Segmentation engine initialized
+2026-02-11 23:36:42 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:34 - Starting document segmentation
+2026-02-11 23:36:42 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:92 - Segmentation complete: 40 segments created
+2026-02-11 23:36:45 | INFO     | app.vector_store.chroma_client:__init__:27 - ChromaDB initialized: compliance_documents
+2026-02-11 23:36:45 | INFO     | app.vector_store.chroma_client:__init__:28 - Collection count: 0
+2026-02-11 23:36:45 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 23:36:45 | INFO     | app.engines.rag.rag_pipeline:index_document:35 - Indexing document 5 with 40 segments
+2026-02-11 23:36:49 | INFO     | app.vector_store.chroma_client:add_documents:44 - Added 40 documents to ChromaDB
+2026-02-11 23:36:49 | INFO     | app.engines.rag.rag_pipeline:index_document:62 - Document 5 indexed successfully
+2026-02-11 23:36:49 | INFO     | app.workers.tasks:process_document_task:72 - Document 5 processed successfully
+2026-02-11 23:37:19 | INFO     | app.api.v1.endpoints.validation:validate_document:51 - Validation task started for document 5
+2026-02-11 23:37:19 | INFO     | app.workers.tasks:validate_document_task:91 - Validating document 5 against ind_as
+2026-02-11 23:37:19 | INFO     | app.engines.compliance.rule_loader:__init__:21 - Rule loader initialized with path: data\compliance_rules
+2026-02-11 23:37:20 | INFO     | app.engines.compliance.compliance_engine:__init__:27 - Compliance engine initialized with openai
+2026-02-11 23:37:20 | INFO     | app.engines.compliance.compliance_engine:validate_document:46 - Starting compliance validation for framework: ind_as
+2026-02-11 23:37:20 | WARNING  | app.engines.compliance.rule_loader:load_rules:42 - Rule file not found: data\compliance_rules\ind_as_rules.json
+2026-02-11 23:37:20 | WARNING  | app.engines.compliance.compliance_engine:validate_document:52 - No rules found for framework: ind_as
+2026-02-11 23:37:20 | INFO     | app.workers.tasks:validate_document_task:136 - Validation complete for document 5
+2026-02-11 23:40:08 | INFO     | app.engines.rag.rag_pipeline:search:81 - Searching for: what is this document about
+2026-02-11 23:40:08 | INFO     | app.engines.rag.rag_pipeline:search:103 - Found 5 results
+2026-02-11 23:40:37 | INFO     | app.services.chat_service:ask_question:41 - Processing question for session cc715aa0-ab99-4418-8051-f3c6fed4b418: what is this document about
+2026-02-11 23:40:37 | INFO     | app.engines.rag.rag_pipeline:search:81 - Searching for: what is this document about
+2026-02-11 23:40:37 | INFO     | app.engines.rag.rag_pipeline:search:103 - Found 5 results
+2026-02-11 23:40:37 | INFO     | app.services.chat_service:ask_question:50 - Retrieved 5 chunks
+2026-02-11 23:40:38 | ERROR    | app.services.llm_service:generate_answer:75 - LLM generation failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-ope***********-key. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-02-11 23:44:04 | INFO     | app.services.chat_service:ask_question:41 - Processing question for session cc715aa0-ab99-4418-8051-f3c6fed4b418: what is this document about
+
+
+2026-02-11 23:44:04 | INFO     | app.engines.rag.rag_pipeline:search:81 - Searching for: what is this document about
+
+
+2026-02-11 23:44:04 | INFO     | app.engines.rag.rag_pipeline:search:103 - Found 5 results
+2026-02-11 23:44:04 | INFO     | app.services.chat_service:ask_question:50 - Retrieved 5 chunks
+2026-02-11 23:44:05 | ERROR    | app.services.llm_service:generate_answer:75 - LLM generation failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-ope***********-key. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-02-11 23:44:05 | INFO     | app.main:lifespan:34 - Shutting down application
+2026-02-11 23:49:25 | INFO     | app.core.logging_config:configure_logging:46 - Logging configured - Level: INFO
+2026-02-11 23:49:41 | INFO     | app.vector_store.chroma_client:__init__:27 - ChromaDB initialized: compliance_documents
+2026-02-11 23:49:41 | INFO     | app.vector_store.chroma_client:__init__:28 - Collection count: 40
+2026-02-11 23:49:41 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 23:49:41 | INFO     | app.services.llm_service:__init__:21 - LLM service initialized with model: gpt-4o-mini
+2026-02-11 23:49:43 | INFO     | app.vector_store.chroma_client:__init__:27 - ChromaDB initialized: compliance_documents
+2026-02-11 23:49:43 | INFO     | app.vector_store.chroma_client:__init__:28 - Collection count: 40
+2026-02-11 23:49:43 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 23:49:43 | INFO     | app.services.chat_service:__init__:19 - Chat service initialized
+2026-02-11 23:49:43 | INFO     | app.main:lifespan:21 - Starting AI Compliance Engine v1.0.0
+2026-02-11 23:49:43 | INFO     | app.main:lifespan:22 - Environment: development
+2026-02-11 23:49:43 | INFO     | app.main:lifespan:27 - Database initialized successfully
+2026-02-11 23:50:54 | INFO     | app.api.v1.endpoints.documents:upload_document:88 - Document uploaded: 6 - 89094asb-aps2918-app1.pdf
+2026-02-11 23:50:54 | INFO     | app.workers.tasks:process_document_task:25 - Processing document 6
+2026-02-11 23:50:54 | INFO     | app.engines.extraction.extraction_engine:__init__:27 - Extraction engine initialized
+2026-02-11 23:50:54 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:59 - Extracting PDF: ./data/raw\6_89094asb-aps2918-app1.pdf
+2026-02-11 23:50:57 | INFO     | app.engines.extraction.extraction_engine:_extract_pdf:115 - PDF extraction complete: 20740 chars, 0 tables
+2026-02-11 23:50:57 | INFO     | app.engines.segmentation.segmentation_engine:__init__:21 - Segmentation engine initialized
+2026-02-11 23:50:57 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:34 - Starting document segmentation
+2026-02-11 23:50:57 | INFO     | app.engines.segmentation.segmentation_engine:segment_document:92 - Segmentation complete: 40 segments created
+2026-02-11 23:50:59 | INFO     | app.vector_store.chroma_client:__init__:27 - ChromaDB initialized: compliance_documents
+2026-02-11 23:50:59 | INFO     | app.vector_store.chroma_client:__init__:28 - Collection count: 40
+2026-02-11 23:50:59 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 23:50:59 | INFO     | app.engines.rag.rag_pipeline:index_document:35 - Indexing document 6 with 40 segments
+2026-02-11 23:51:03 | INFO     | app.vector_store.chroma_client:add_documents:44 - Added 40 documents to ChromaDB
+2026-02-11 23:51:03 | INFO     | app.engines.rag.rag_pipeline:index_document:62 - Document 6 indexed successfully
+2026-02-11 23:51:03 | INFO     | app.workers.tasks:process_document_task:72 - Document 6 processed successfully
+2026-02-11 23:51:05 | INFO     | app.api.v1.endpoints.validation:validate_document:51 - Validation task started for document 6
+2026-02-11 23:51:05 | INFO     | app.workers.tasks:validate_document_task:91 - Validating document 6 against sebi
+2026-02-11 23:51:05 | INFO     | app.engines.compliance.rule_loader:__init__:21 - Rule loader initialized with path: data\compliance_rules
+2026-02-11 23:51:06 | INFO     | app.engines.compliance.compliance_engine:__init__:27 - Compliance engine initialized with openai
+2026-02-11 23:51:06 | INFO     | app.engines.compliance.compliance_engine:validate_document:46 - Starting compliance validation for framework: sebi
+2026-02-11 23:51:06 | WARNING  | app.engines.compliance.rule_loader:load_rules:42 - Rule file not found: data\compliance_rules\sebi_rules.json
+2026-02-11 23:51:06 | WARNING  | app.engines.compliance.compliance_engine:validate_document:52 - No rules found for framework: sebi
+2026-02-11 23:51:06 | INFO     | app.workers.tasks:validate_document_task:136 - Validation complete for document 6
+2026-02-11 23:51:20 | INFO     | app.workers.tasks:generate_report_task:148 - Generating summary report for document 6
+2026-02-11 23:51:20 | WARNING  | app.workers.tasks:generate_report_task:166 - No validation results found for document 6
+2026-02-11 23:51:20 | INFO     | app.api.v1.endpoints.reports:generate_report:42 - Report generated: {'status': 'error', 'message': 'No validation results available'}
+2026-02-11 23:52:31 | INFO     | app.engines.rag.rag_pipeline:search:81 - Searching for: what is  Micro, Small and Medium Sized Entity (MSME) means, a non
+2026-02-11 23:52:31 | INFO     | app.engines.rag.rag_pipeline:search:103 - Found 5 results
+2026-02-11 23:54:01 | INFO     | app.services.chat_service:ask_question:41 - Processing question for session 0c975314-c34b-4153-8c66-dc08a40e2121: what does Micro, Small and Medium Sized Entity (MSME) do?
+
+2026-02-11 23:54:01 | INFO     | app.engines.rag.rag_pipeline:search:81 - Searching for: what does Micro, Small and Medium Sized Entity (MSME) do?
+
+2026-02-11 23:54:01 | INFO     | app.engines.rag.rag_pipeline:search:103 - Found 5 results
+2026-02-11 23:54:01 | INFO     | app.services.chat_service:ask_question:50 - Retrieved 5 chunks
+2026-02-11 23:54:01 | ERROR    | app.services.llm_service:generate_answer:75 - LLM generation failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-ope***********-key. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-02-11 23:54:15 | INFO     | app.main:lifespan:34 - Shutting down application
+2026-02-11 23:55:39 | INFO     | app.core.logging_config:configure_logging:46 - Logging configured - Level: INFO
+2026-02-11 23:55:53 | INFO     | app.vector_store.chroma_client:__init__:27 - ChromaDB initialized: compliance_documents
+2026-02-11 23:55:53 | INFO     | app.vector_store.chroma_client:__init__:28 - Collection count: 80
+2026-02-11 23:55:53 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 23:55:54 | INFO     | app.services.llm_service:__init__:21 - LLM service initialized with model: gpt-4o-mini
+2026-02-11 23:55:56 | INFO     | app.vector_store.chroma_client:__init__:27 - ChromaDB initialized: compliance_documents
+2026-02-11 23:55:56 | INFO     | app.vector_store.chroma_client:__init__:28 - Collection count: 80
+2026-02-11 23:55:56 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 23:55:56 | INFO     | app.services.chat_service:__init__:19 - Chat service initialized
+2026-02-11 23:55:56 | INFO     | app.main:lifespan:21 - Starting AI Compliance Engine v1.0.0
+2026-02-11 23:55:56 | INFO     | app.main:lifespan:22 - Environment: development
+2026-02-11 23:55:56 | INFO     | app.main:lifespan:27 - Database initialized successfully
+2026-02-11 23:57:24 | INFO     | app.main:lifespan:34 - Shutting down application
+2026-02-11 23:57:26 | INFO     | app.core.logging_config:configure_logging:46 - Logging configured - Level: INFO
+2026-02-11 23:57:42 | INFO     | app.vector_store.chroma_client:__init__:27 - ChromaDB initialized: compliance_documents
+2026-02-11 23:57:42 | INFO     | app.vector_store.chroma_client:__init__:28 - Collection count: 80
+2026-02-11 23:57:42 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 23:57:42 | INFO     | app.services.llm_service:__init__:21 - LLM service initialized with model: gpt-4o-mini
+2026-02-11 23:57:44 | INFO     | app.vector_store.chroma_client:__init__:27 - ChromaDB initialized: compliance_documents
+2026-02-11 23:57:44 | INFO     | app.vector_store.chroma_client:__init__:28 - Collection count: 80
+2026-02-11 23:57:44 | INFO     | app.engines.rag.rag_pipeline:__init__:20 - RAG pipeline initialized with model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-11 23:57:44 | INFO     | app.services.chat_service:__init__:19 - Chat service initialized
+2026-02-11 23:57:44 | INFO     | app.main:lifespan:21 - Starting AI Compliance Engine v1.0.0
+2026-02-11 23:57:44 | INFO     | app.main:lifespan:22 - Environment: development
+2026-02-11 23:57:44 | INFO     | app.main:lifespan:27 - Database initialized successfully
+2026-02-11 23:58:25 | INFO     | app.services.chat_service:ask_question:41 - Processing question for session 5eff865a-4b93-410c-9271-db703023db04: what does Micro, Small and Medium Sized Entity (MSME) do?
+
+
+2026-02-11 23:58:25 | INFO     | app.engines.rag.rag_pipeline:search:81 - Searching for: what does Micro, Small and Medium Sized Entity (MSME) do?
+
+
+2026-02-11 23:58:25 | INFO     | app.engines.rag.rag_pipeline:search:103 - Found 5 results
+2026-02-11 23:58:25 | INFO     | app.services.chat_service:ask_question:50 - Retrieved 5 chunks
+2026-02-11 23:58:26 | ERROR    | app.services.llm_service:generate_answer:75 - LLM generation failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-ope***********-key. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}

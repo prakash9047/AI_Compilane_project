@@ -118,21 +118,28 @@ async def get_validation_summary(
     non_compliant = sum(1 for r in results if r.status == "non_compliant")
     partial = sum(1 for r in results if r.status == "partial")
     
-    # Severity breakdown
-    critical = sum(1 for r in results if r.severity == "critical")
-    high = sum(1 for r in results if r.severity == "high")
-    medium = sum(1 for r in results if r.severity == "medium")
-    low = sum(1 for r in results if r.severity == "low")
+    # Severity breakdown - ONLY for non-compliant and partial rules (issues)
+    issues = [r for r in results if r.status in ["non_compliant", "partial"]]
+    critical = sum(1 for r in issues if r.severity == "critical")
+    high = sum(1 for r in issues if r.severity == "high")
+    medium = sum(1 for r in issues if r.severity == "medium")
+    low = sum(1 for r in issues if r.severity == "low")
     
     compliance_score = (compliant / total * 100) if total > 0 else 0
     
     return {
         "document_id": document_id,
         "total_rules": total,
+        "rules_passed": compliant,
+        "rules_failed": non_compliant + partial,
         "compliant": compliant,
         "non_compliant": non_compliant,
         "partial": partial,
         "compliance_score": round(compliance_score, 2),
+        "critical_issues": critical,
+        "high_issues": high,
+        "medium_issues": medium,
+        "low_issues": low,
         "severity_breakdown": {
             "critical": critical,
             "high": high,

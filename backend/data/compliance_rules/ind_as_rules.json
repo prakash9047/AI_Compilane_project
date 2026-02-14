@@ -1,0 +1,709 @@
+[
+  {
+    "id": "ind_as_2",
+    "framework": "ind_as",
+    "name": "Inventories",
+    "description": "Disclosure of inventory valuation and carrying amount",
+    "requirements": "Entity must disclose inventory valuation method and carrying value of inventories",
+
+    "keywords": [
+      "inventories",
+      "stock",
+      "inventory valuation",
+      "closing stock"
+    ],
+    "synonyms": [
+      "raw materials",
+      "work in progress",
+      "finished goods",
+      "FIFO",
+      "weighted average cost",
+      "inventory write down"
+    ],
+
+    "rule_type": "numeric_extraction",
+    "evidence_type": "table_or_section",
+
+    "expected_sections": ["inventories", "stock"],
+    "expected_tables": ["inventory table"],
+    "numeric_fields": ["closing inventory", "inventory write down"],
+    "thresholds": {},
+
+    "llm_instruction": "Verify inventory valuation method and carrying amount of inventory are disclosed.",
+
+    "weight": 8,
+    "severity": "medium",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_21",
+    "framework": "ind_as",
+    "name": "Foreign Exchange Effects",
+    "description": "Disclosure of foreign currency transactions and exchange differences",
+    "requirements": "Entity must disclose forex gains/losses and translation policies",
+
+    "keywords": [
+      "foreign exchange",
+      "forex gain",
+      "forex loss",
+      "exchange difference"
+    ],
+    "synonyms": [
+      "currency fluctuation",
+      "exchange rate",
+      "translation reserve",
+      "foreign currency transactions"
+    ],
+
+    "rule_type": "disclosure_text",
+    "evidence_type": "paragraph_or_table",
+
+    "expected_sections": ["foreign exchange", "other income", "finance cost"],
+    "expected_tables": [],
+    "numeric_fields": ["forex gain", "forex loss"],
+    "thresholds": {},
+
+    "llm_instruction": "Check disclosure of foreign exchange gain/loss and accounting treatment.",
+
+    "weight": 6,
+    "severity": "medium",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_23",
+    "framework": "ind_as",
+    "name": "Borrowing Costs",
+    "description": "Disclosure of borrowing costs and capitalization",
+    "requirements": "Entity must disclose borrowing costs incurred and capitalized",
+
+    "keywords": [
+      "borrowing cost",
+      "interest expense",
+      "finance cost"
+    ],
+    "synonyms": [
+      "loan interest",
+      "capitalized interest",
+      "bank interest",
+      "finance charges"
+    ],
+
+    "rule_type": "numeric_extraction",
+    "evidence_type": "table_or_section",
+
+    "expected_sections": ["finance cost", "borrowing cost"],
+    "expected_tables": [],
+    "numeric_fields": ["interest expense", "borrowing cost capitalized"],
+    "thresholds": {},
+
+    "llm_instruction": "Verify borrowing cost disclosure including interest expense and capitalized costs.",
+
+    "weight": 7,
+    "severity": "medium",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_32",
+    "framework": "ind_as",
+    "name": "Financial Instruments Presentation",
+    "description": "Proper classification of equity and financial liabilities",
+    "requirements": "Entity must classify instruments as equity or liability correctly",
+
+    "keywords": [
+      "share capital",
+      "financial liabilities",
+      "equity instruments"
+    ],
+    "synonyms": [
+      "preference shares",
+      "convertible instruments",
+      "compound instruments",
+      "debt vs equity"
+    ],
+
+    "rule_type": "disclosure_text",
+    "evidence_type": "paragraph_or_table",
+
+    "expected_sections": ["equity", "financial liabilities"],
+    "expected_tables": ["share capital table"],
+    "numeric_fields": ["share capital"],
+    "thresholds": {},
+
+    "llm_instruction": "Check classification of equity and financial liabilities.",
+
+    "weight": 8,
+    "severity": "high",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_34",
+    "framework": "ind_as",
+    "name": "Interim Financial Reporting",
+    "description": "Disclosure of interim financial results if applicable",
+    "requirements": "Entity must disclose interim financial information if prepared",
+
+    "keywords": [
+      "interim financial",
+      "quarterly results",
+      "half yearly"
+    ],
+    "synonyms": [
+      "Q1 results",
+      "Q2 results",
+      "nine months results",
+      "interim report"
+    ],
+
+    "rule_type": "section_presence",
+    "evidence_type": "section",
+
+    "expected_sections": ["interim financial results", "quarterly results"],
+    "expected_tables": [],
+    "numeric_fields": [],
+    "thresholds": {},
+
+    "llm_instruction": "If interim report exists, verify interim financial disclosures.",
+
+    "weight": 5,
+    "severity": "low",
+    "mandatory": false
+  },
+
+  {
+    "id": "ind_as_38",
+    "framework": "ind_as",
+    "name": "Intangible Assets",
+    "description": "Disclosure of intangible assets and amortization",
+    "requirements": "Entity must disclose carrying amount and amortization of intangible assets",
+
+    "keywords": [
+      "intangible assets",
+      "goodwill",
+      "software"
+    ],
+    "synonyms": [
+      "brand value",
+      "licenses",
+      "trademarks",
+      "patents",
+      "amortization"
+    ],
+
+    "rule_type": "table_presence",
+    "evidence_type": "table_or_section",
+
+    "expected_sections": ["intangible assets"],
+    "expected_tables": ["intangible asset schedule"],
+    "numeric_fields": ["goodwill", "amortization"],
+    "thresholds": {},
+
+    "llm_instruction": "Verify disclosure of intangible assets and amortization.",
+
+    "weight": 8,
+    "severity": "high",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_40",
+    "framework": "ind_as",
+    "name": "Investment Property",
+    "description": "Disclosure of investment property and fair value",
+    "requirements": "Entity must disclose investment property carrying value and fair value",
+
+    "keywords": [
+      "investment property",
+      "rental property",
+      "fair value property"
+    ],
+    "synonyms": [
+      "leased property",
+      "real estate investment",
+      "property held for rental"
+    ],
+
+    "rule_type": "numeric_extraction",
+    "evidence_type": "table_or_section",
+
+    "expected_sections": ["investment property"],
+    "expected_tables": ["investment property schedule"],
+    "numeric_fields": ["fair value", "carrying amount"],
+    "thresholds": {},
+
+    "llm_instruction": "Verify disclosure of investment property and fair value.",
+
+    "weight": 7,
+    "severity": "medium",
+    "mandatory": false
+  },
+
+  {
+    "id": "ind_as_1",
+    "framework": "ind_as",
+    "name": "Presentation of Financial Statements",
+    "description": "Complete set of financial statements must include required statements and notes",
+    "requirements": "Entity must present Balance Sheet, P&L, Cash Flow Statement, Statement of Changes in Equity and Notes",
+
+    "keywords": [
+      "financial statements",
+      "balance sheet",
+      "profit and loss",
+      "cash flow",
+      "statement of changes in equity",
+      "notes to accounts"
+    ],
+    "synonyms": [
+      "statement of financial position",
+      "P&L",
+      "income statement",
+      "cash flows",
+      "SOCE",
+      "equity statement",
+      "financial disclosures",
+      "annual report financials"
+    ],
+
+    "rule_type": "section_presence",
+    "evidence_type": "section",
+
+    "expected_sections": [
+      "balance sheet",
+      "statement of profit and loss",
+      "cash flow statement",
+      "statement of changes in equity",
+      "notes"
+    ],
+    "expected_tables": [],
+    "numeric_fields": [],
+    "thresholds": {},
+
+    "llm_instruction": "Verify that all primary financial statements and notes are present as separate clearly labeled sections.",
+
+    "weight": 10,
+    "severity": "high",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_7",
+    "framework": "ind_as",
+    "name": "Statement of Cash Flows",
+    "description": "Cash flows must be classified into operating, investing, and financing activities",
+    "requirements": "Cash flow statement must separately disclose operating, investing and financing cash flows",
+
+    "keywords": [
+      "cash flow",
+      "operating activities",
+      "investing activities",
+      "financing activities"
+    ],
+    "synonyms": [
+      "cash flows statement",
+      "CFO",
+      "CFI",
+      "CFF",
+      "net cash from operations",
+      "cash movement"
+    ],
+
+    "rule_type": "section_presence",
+    "evidence_type": "table_or_section",
+
+    "expected_sections": [
+      "operating activities",
+      "investing activities",
+      "financing activities"
+    ],
+    "expected_tables": ["cash flow statement"],
+    "numeric_fields": [],
+    "thresholds": {},
+
+    "llm_instruction": "Ensure the cash flow statement clearly splits cash flows into operating, investing, and financing categories.",
+
+    "weight": 9,
+    "severity": "high",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_8",
+    "framework": "ind_as",
+    "name": "Accounting Policies",
+    "description": "Disclosure of significant accounting policies and changes",
+    "requirements": "Entity must disclose significant accounting policies and any changes or corrections",
+
+    "keywords": [
+      "accounting policies",
+      "accounting estimates",
+      "prior period errors"
+    ],
+    "synonyms": [
+      "basis of preparation",
+      "significant policies",
+      "restatement",
+      "estimate revisions",
+      "policy changes"
+    ],
+
+    "rule_type": "disclosure_text",
+    "evidence_type": "paragraph",
+
+    "expected_sections": ["accounting policies", "notes to accounts"],
+    "expected_tables": [],
+    "numeric_fields": [],
+    "thresholds": {},
+
+    "llm_instruction": "Check whether significant accounting policies and changes are disclosed.",
+
+    "weight": 7,
+    "severity": "medium",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_10",
+    "framework": "ind_as",
+    "name": "Events After Reporting Period",
+    "description": "Disclosure of material events after reporting date",
+    "requirements": "Disclose material events after balance sheet date",
+
+    "keywords": [
+      "events after reporting period",
+      "subsequent events"
+    ],
+    "synonyms": [
+      "post balance sheet",
+      "after reporting date",
+      "adjusting events"
+    ],
+
+    "rule_type": "disclosure_text",
+    "evidence_type": "paragraph",
+
+    "expected_sections": ["subsequent events", "events after reporting period"],
+    "expected_tables": [],
+    "numeric_fields": [],
+    "thresholds": {},
+
+    "llm_instruction": "Confirm that material events after reporting date are disclosed.",
+
+    "weight": 6,
+    "severity": "medium",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_16",
+    "framework": "ind_as",
+    "name": "Property Plant and Equipment",
+    "description": "Disclosure of PPE and depreciation",
+    "requirements": "Disclose carrying amount, depreciation and useful life",
+
+    "keywords": [
+      "property plant equipment",
+      "PPE",
+      "depreciation",
+      "fixed assets"
+    ],
+    "synonyms": [
+      "tangible assets",
+      "gross block",
+      "net block",
+      "accumulated depreciation"
+    ],
+
+    "rule_type": "table_presence",
+    "evidence_type": "table",
+
+    "expected_sections": ["property plant and equipment", "fixed assets"],
+    "expected_tables": ["PPE schedule", "fixed asset schedule"],
+    "numeric_fields": ["gross carrying amount", "accumulated depreciation", "net carrying amount"],
+    "thresholds": {},
+
+    "llm_instruction": "Verify PPE table with depreciation and useful life.",
+
+    "weight": 9,
+    "severity": "high",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_19",
+    "framework": "ind_as",
+    "name": "Employee Benefits",
+    "description": "Disclosure of employee benefit obligations",
+    "requirements": "Disclose gratuity, PF, pension and obligations",
+
+    "keywords": [
+      "employee benefits",
+      "gratuity",
+      "provident fund",
+      "pension"
+    ],
+    "synonyms": [
+      "retirement benefits",
+      "PF",
+      "superannuation",
+      "actuarial valuation"
+    ],
+
+    "rule_type": "disclosure_text",
+    "evidence_type": "paragraph_or_table",
+
+    "expected_sections": ["employee benefits"],
+    "expected_tables": ["actuarial valuation table"],
+    "numeric_fields": ["defined benefit obligation"],
+    "thresholds": {},
+
+    "llm_instruction": "Check disclosure of employee benefit plans.",
+
+    "weight": 7,
+    "severity": "medium",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_24",
+    "framework": "ind_as",
+    "name": "Related Party Disclosures",
+    "description": "Disclosure of related party transactions",
+    "requirements": "Disclose related party relationships, transactions and balances",
+
+    "keywords": [
+      "related party",
+      "related party transactions",
+      "key management personnel"
+    ],
+    "synonyms": [
+      "RPT",
+      "subsidiaries",
+      "associate entities",
+      "director compensation",
+      "KMP remuneration"
+    ],
+
+    "rule_type": "table_presence",
+    "evidence_type": "table_or_section",
+
+    "expected_sections": ["related party"],
+    "expected_tables": ["related party transaction table"],
+    "numeric_fields": ["transaction value", "outstanding balances"],
+    "thresholds": {},
+
+    "llm_instruction": "Ensure related party transactions are disclosed and quantified.",
+
+    "weight": 10,
+    "severity": "high",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_33",
+    "framework": "ind_as",
+    "name": "Earnings Per Share",
+    "description": "Disclosure of basic and diluted EPS",
+    "requirements": "Disclose basic and diluted EPS",
+
+    "keywords": [
+      "earnings per share",
+      "EPS",
+      "basic EPS",
+      "diluted EPS"
+    ],
+    "synonyms": [
+      "per share earnings",
+      "weighted average shares"
+    ],
+
+    "rule_type": "numeric_extraction",
+    "evidence_type": "numeric",
+
+    "expected_sections": ["earnings per share"],
+    "expected_tables": [],
+    "numeric_fields": ["basic EPS", "diluted EPS"],
+    "thresholds": {},
+
+    "llm_instruction": "Extract and confirm both basic and diluted EPS.",
+
+    "weight": 8,
+    "severity": "high",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_36",
+    "framework": "ind_as",
+    "name": "Impairment of Assets",
+    "description": "Disclosure of impairment losses",
+    "requirements": "Disclose impairment testing and losses",
+
+    "keywords": [
+      "impairment",
+      "impairment loss",
+      "recoverable amount"
+    ],
+    "synonyms": [
+      "write down",
+      "CGU",
+      "value in use"
+    ],
+
+    "rule_type": "disclosure_text",
+    "evidence_type": "paragraph_or_table",
+
+    "expected_sections": ["impairment"],
+    "expected_tables": [],
+    "numeric_fields": ["impairment loss"],
+    "thresholds": {},
+
+    "llm_instruction": "Verify impairment disclosures.",
+
+    "weight": 7,
+    "severity": "medium",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_37",
+    "framework": "ind_as",
+    "name": "Provisions and Contingencies",
+    "description": "Disclosure of provisions and contingent liabilities",
+    "requirements": "Disclose provisions and contingent liabilities",
+
+    "keywords": [
+      "provisions",
+      "contingent liabilities",
+      "legal cases"
+    ],
+    "synonyms": [
+      "litigation",
+      "claims",
+      "guarantees"
+    ],
+
+    "rule_type": "table_presence",
+    "evidence_type": "table_or_paragraph",
+
+    "expected_sections": ["provisions", "contingencies"],
+    "expected_tables": ["provision schedule"],
+    "numeric_fields": ["provision amount"],
+    "thresholds": {},
+
+    "llm_instruction": "Check disclosure of provisions and contingent liabilities.",
+
+    "weight": 7,
+    "severity": "medium",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_12",
+    "framework": "ind_as",
+    "name": "Income Taxes",
+    "description": "Disclosure of current and deferred taxes",
+    "requirements": "Disclose current tax, deferred tax and reconciliation",
+
+    "keywords": [
+      "income tax",
+      "deferred tax",
+      "tax expense"
+    ],
+    "synonyms": [
+      "MAT",
+      "current tax expense",
+      "DTA",
+      "DTL",
+      "tax reconciliation"
+    ],
+
+    "rule_type": "numeric_extraction",
+    "evidence_type": "table_or_section",
+
+    "expected_sections": ["income tax", "tax expense"],
+    "expected_tables": ["tax reconciliation"],
+    "numeric_fields": ["current tax expense", "deferred tax expense"],
+    "thresholds": {},
+
+    "llm_instruction": "Check disclosure of current and deferred tax.",
+
+    "weight": 9,
+    "severity": "high",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_109",
+    "framework": "ind_as",
+    "name": "Financial Instruments",
+    "description": "Disclosure of financial instruments and risk",
+    "requirements": "Disclose classification, fair value and risks",
+
+    "keywords": [
+      "financial instruments",
+      "financial assets",
+      "financial liabilities",
+      "fair value"
+    ],
+    "synonyms": [
+      "FVOCI",
+      "FVTPL",
+      "ECL",
+      "credit risk",
+      "liquidity risk",
+      "market risk"
+    ],
+
+    "rule_type": "table_presence",
+    "evidence_type": "table_or_section",
+
+    "expected_sections": ["financial instruments", "financial risk"],
+    "expected_tables": ["financial assets table", "fair value hierarchy"],
+    "numeric_fields": ["fair value", "expected credit loss"],
+    "thresholds": {},
+
+    "llm_instruction": "Verify financial instruments classification and risk disclosure.",
+
+    "weight": 10,
+    "severity": "high",
+    "mandatory": true
+  },
+
+  {
+    "id": "ind_as_115",
+    "framework": "ind_as",
+    "name": "Revenue from Contracts",
+    "description": "Disclosure of revenue recognition and disaggregation",
+    "requirements": "Disclose revenue policy and disaggregated revenue",
+
+    "keywords": [
+      "revenue",
+      "revenue from operations",
+      "revenue recognition"
+    ],
+    "synonyms": [
+      "turnover",
+      "sales",
+      "contract revenue",
+      "performance obligations",
+      "deferred revenue"
+    ],
+
+    "rule_type": "disclosure_text",
+    "evidence_type": "paragraph_or_table",
+
+    "expected_sections": ["revenue", "revenue recognition"],
+    "expected_tables": ["revenue disaggregation"],
+    "numeric_fields": ["revenue from operations"],
+    "thresholds": {},
+
+    "llm_instruction": "Check revenue recognition policy and disaggregated revenue.",
+
+    "weight": 10,
+    "severity": "high",
+    "mandatory": true
+  }
+]

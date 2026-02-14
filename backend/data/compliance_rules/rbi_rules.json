@@ -1,0 +1,594 @@
+[
+    {
+        "id": "rbi_leverage_ratio",
+        "framework": "rbi",
+        "name": "RBI - Leverage Ratio Disclosure",
+        "description": "Banks must maintain minimum leverage ratio under Basel III",
+        "requirements": "Disclosure of leverage ratio and Tier 1 capital",
+        "keywords": [
+            "leverage ratio",
+            "tier 1 leverage",
+            "basel leverage"
+        ],
+        "synonyms": [
+            "basel iii leverage",
+            "tier 1 capital exposure",
+            "total exposure measure",
+            "leverage capital",
+            "minimum leverage requirement"
+        ],
+        "rule_type": "ratio_validation",
+        "evidence_type": "numeric",
+        "expected_sections": [
+            "capital adequacy",
+            "basel disclosures",
+            "leverage ratio"
+        ],
+        "expected_tables": [
+            "leverage ratio table"
+        ],
+        "numeric_fields": [
+            "Leverage ratio",
+            "Tier 1 capital",
+            "Exposure measure"
+        ],
+        "thresholds": {
+            "Leverage ratio": ">= 3"
+        },
+        "llm_instruction": "Extract leverage ratio and Tier 1 capital. Verify minimum regulatory threshold compliance.",
+        "weight": 8,
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_priority_sector_lending",
+        "framework": "rbi",
+        "name": "RBI - Priority Sector Lending",
+        "description": "Banks must meet priority sector lending targets",
+        "requirements": "Disclosure of PSL targets and achievements",
+        "keywords": [
+            "priority sector",
+            "psl",
+            "agriculture loans",
+            "msme loans"
+        ],
+        "synonyms": [
+            "priority sector lending",
+            "agri lending",
+            "msme financing",
+            "financial inclusion lending",
+            "psl achievement",
+            "weaker section lending"
+        ],
+        "rule_type": "numeric_extraction",
+        "evidence_type": "table_or_numeric",
+        "expected_sections": [
+            "priority sector lending",
+            "financial inclusion",
+            "loan portfolio"
+        ],
+        "expected_tables": [
+            "psl achievement table"
+        ],
+        "numeric_fields": [
+            "Total PSL",
+            "PSL percentage",
+            "Agriculture lending",
+            "MSME lending"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Extract priority sector lending targets and actual achievements. Verify disclosures of PSL composition.",
+        "weight": 9,
+        "severity": "critical",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_slr_crr",
+        "framework": "rbi",
+        "name": "RBI - SLR and CRR Compliance",
+        "description": "Banks must maintain statutory liquidity ratio and cash reserve ratio",
+        "requirements": "Disclosure of SLR and CRR maintenance levels",
+        "keywords": [
+            "slr",
+            "crr",
+            "statutory liquidity",
+            "cash reserve"
+        ],
+        "synonyms": [
+            "statutory liquidity ratio",
+            "cash reserve ratio",
+            "liquidity reserves",
+            "regulatory reserves",
+            "rbi reserve requirement"
+        ],
+        "rule_type": "ratio_validation",
+        "evidence_type": "numeric",
+        "expected_sections": [
+            "liquidity management",
+            "regulatory ratios",
+            "treasury"
+        ],
+        "expected_tables": [
+            "slr crr table"
+        ],
+        "numeric_fields": [
+            "SLR",
+            "CRR"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Extract SLR and CRR ratios and confirm disclosure of regulatory compliance.",
+        "weight": 7,
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_net_interest_margin",
+        "framework": "rbi",
+        "name": "RBI - Net Interest Margin Disclosure",
+        "description": "Banks must disclose net interest income and margins",
+        "requirements": "Disclosure of NIM and interest income components",
+        "keywords": [
+            "nim",
+            "net interest margin",
+            "interest income"
+        ],
+        "synonyms": [
+            "net interest income",
+            "interest spread",
+            "yield on assets",
+            "cost of funds",
+            "margin analysis"
+        ],
+        "rule_type": "numeric_extraction",
+        "evidence_type": "numeric",
+        "expected_sections": [
+            "financial highlights",
+            "income statement",
+            "profitability ratios"
+        ],
+        "expected_tables": [
+            "interest income table"
+        ],
+        "numeric_fields": [
+            "Net interest margin",
+            "Interest income",
+            "Interest expense"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Extract net interest margin and interest income details from financial statements.",
+        "weight": 5,
+        "severity": "medium",
+        "mandatory": false
+    },
+    {
+        "id": "rbi_related_party_transactions",
+        "framework": "rbi",
+        "name": "RBI - Related Party Transactions",
+        "description": "Disclosure of transactions with related parties",
+        "requirements": "Disclosure of loans and transactions with related entities",
+        "keywords": [
+            "related party",
+            "related entities",
+            "director loans"
+        ],
+        "synonyms": [
+            "related party transactions",
+            "associate entities",
+            "group companies",
+            "management transactions",
+            "key managerial personnel transactions"
+        ],
+        "rule_type": "table_presence",
+        "evidence_type": "table",
+        "expected_sections": [
+            "notes to accounts",
+            "related party disclosures",
+            "corporate governance"
+        ],
+        "expected_tables": [
+            "related party table"
+        ],
+        "numeric_fields": [
+            "Related party exposure"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Check presence of related party transaction disclosure tables and extract exposure amounts.",
+        "weight": 6,
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_operational_risk",
+        "framework": "rbi",
+        "name": "RBI - Operational Risk Capital",
+        "description": "Banks must disclose operational risk capital requirement",
+        "requirements": "Disclosure of operational risk capital under Basel norms",
+        "keywords": [
+            "operational risk",
+            "risk capital",
+            "basel operational"
+        ],
+        "synonyms": [
+            "operational risk capital",
+            "risk weighted assets operational",
+            "basel operational risk",
+            "loss events",
+            "risk capital charge"
+        ],
+        "rule_type": "numeric_extraction",
+        "evidence_type": "numeric",
+        "expected_sections": [
+            "risk management",
+            "basel disclosures",
+            "operational risk"
+        ],
+        "expected_tables": [
+            "operational risk capital table"
+        ],
+        "numeric_fields": [
+            "Operational risk capital",
+            "Operational RWA"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Extract operational risk capital and confirm disclosure under Basel framework.",
+        "weight": 7,
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_market_risk",
+        "framework": "rbi",
+        "name": "RBI - Market Risk Disclosure",
+        "description": "Disclosure of market risk capital and exposures",
+        "requirements": "Disclosure of interest rate and forex risk exposure",
+        "keywords": [
+            "market risk",
+            "forex risk",
+            "interest rate risk"
+        ],
+        "synonyms": [
+            "trading book risk",
+            "market risk capital",
+            "interest rate risk",
+            "foreign exchange exposure",
+            "var risk"
+        ],
+        "rule_type": "numeric_extraction",
+        "evidence_type": "numeric",
+        "expected_sections": [
+            "risk management",
+            "market risk",
+            "pillar 3 disclosures"
+        ],
+        "expected_tables": [
+            "market risk table"
+        ],
+        "numeric_fields": [
+            "Market risk capital",
+            "Forex exposure"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Extract market risk capital and exposure values and confirm disclosure.",
+        "weight": 6,
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_alm_maturity",
+        "framework": "rbi",
+        "name": "RBI - Asset Liability Maturity",
+        "description": "Disclosure of maturity buckets for assets and liabilities",
+        "requirements": "Disclosure of ALM maturity profile",
+        "keywords": [
+            "alm",
+            "maturity profile",
+            "asset liability"
+        ],
+        "synonyms": [
+            "asset liability management",
+            "liquidity maturity buckets",
+            "repricing gap",
+            "structural liquidity",
+            "maturity mismatch"
+        ],
+        "rule_type": "table_presence",
+        "evidence_type": "table",
+        "expected_sections": [
+            "asset liability management",
+            "liquidity risk",
+            "risk management"
+        ],
+        "expected_tables": [
+            "maturity bucket table"
+        ],
+        "numeric_fields": [
+            "Short term gap",
+            "Long term gap"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Check presence of maturity bucket tables and extract liquidity gaps.",
+        "weight": 7,
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_restructured_loans",
+        "framework": "rbi",
+        "name": "RBI - Restructured Loans Disclosure",
+        "description": "Disclosure of restructured or stressed loan accounts",
+        "requirements": "Disclosure of restructured loan amounts and provisions",
+        "keywords": [
+            "restructured loans",
+            "stressed assets",
+            "loan restructuring"
+        ],
+        "synonyms": [
+            "loan restructuring",
+            "resolution framework",
+            "covid restructuring",
+            "stressed assets",
+            "modified loans"
+        ],
+        "rule_type": "numeric_extraction",
+        "evidence_type": "table_or_numeric",
+        "expected_sections": [
+            "asset quality",
+            "loan restructuring",
+            "credit risk"
+        ],
+        "expected_tables": [
+            "restructured loans table"
+        ],
+        "numeric_fields": [
+            "Restructured loan amount",
+            "Provision on restructured loans"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Extract restructured loan amounts and provisions from disclosure tables.",
+        "weight": 8,
+        "severity": "critical",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_fraud_reporting",
+        "framework": "rbi",
+        "name": "RBI - Fraud Reporting Disclosure",
+        "description": "Disclosure of fraud cases and amounts",
+        "requirements": "Disclosure of number and value of frauds reported",
+        "keywords": [
+            "fraud",
+            "bank fraud",
+            "fraud reporting"
+        ],
+        "synonyms": [
+            "fraud cases",
+            "financial fraud",
+            "cyber fraud",
+            "operational fraud",
+            "fraud loss"
+        ],
+        "rule_type": "numeric_extraction",
+        "evidence_type": "numeric",
+        "expected_sections": [
+            "risk management",
+            "notes to accounts",
+            "fraud monitoring"
+        ],
+        "expected_tables": [
+            "fraud disclosure table"
+        ],
+        "numeric_fields": [
+            "Number of frauds",
+            "Fraud amount"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Extract number and amount of frauds reported and confirm disclosure.",
+        "weight": 9,
+        "severity": "critical",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_asset_classification",
+        "framework": "rbi",
+        "name": "RBI - Asset Classification and Provisioning",
+        "description": "Classification of assets as standard, sub-standard, doubtful or loss assets",
+        "requirements": "Disclosure of NPA levels, provisioning coverage ratio, movement in NPAs",
+        "keywords": [
+            "npa",
+            "non-performing assets",
+            "provisioning",
+            "asset classification"
+        ],
+        "synonyms": [
+            "gross npa",
+            "net npa",
+            "gnpa",
+            "nnpa",
+            "slippages",
+            "loan impairment",
+            "credit impairment",
+            "provision coverage ratio",
+            "pcr",
+            "substandard assets",
+            "doubtful assets",
+            "loss assets",
+            "restructured loans",
+            "stage 3 assets",
+            "defaulted loans"
+        ],
+        "rule_type": "numeric_extraction",
+        "evidence_type": "table_or_numeric",
+        "expected_sections": [
+            "asset quality",
+            "asset classification",
+            "non performing assets",
+            "npa movement",
+            "provisions and contingencies"
+        ],
+        "expected_tables": [
+            "npa classification table",
+            "provisioning coverage",
+            "movement of npa"
+        ],
+        "numeric_fields": [
+            "gross npa ratio",
+            "net npa ratio",
+            "provision coverage ratio",
+            "total provisions"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Extract NPA amounts, provisioning figures and ratios. Confirm that asset classification and provisioning details are disclosed in tables or notes.",
+        "weight": 10,
+        "severity": "critical",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_capital_adequacy",
+        "framework": "rbi",
+        "name": "RBI - Capital Adequacy Ratio",
+        "description": "Banks must maintain minimum capital adequacy ratio as per Basel III norms",
+        "requirements": "Disclosure of CRAR, Tier I and Tier II capital, risk-weighted assets",
+        "keywords": [
+            "capital adequacy",
+            "crar",
+            "tier 1",
+            "tier 2",
+            "basel"
+        ],
+        "synonyms": [
+            "capital to risk weighted assets ratio",
+            "car",
+            "capital ratio",
+            "regulatory capital",
+            "core capital",
+            "common equity tier 1",
+            "cet1",
+            "tier i capital",
+            "tier ii capital",
+            "risk weighted assets",
+            "rwa",
+            "basel iii",
+            "minimum capital requirement"
+        ],
+        "rule_type": "ratio_validation",
+        "evidence_type": "numeric",
+        "expected_sections": [
+            "capital adequacy",
+            "capital management",
+            "basel disclosures",
+            "pillar 3 disclosures"
+        ],
+        "expected_tables": [
+            "capital adequacy table",
+            "risk weighted assets"
+        ],
+        "numeric_fields": [
+            "CRAR",
+            "Tier 1 ratio",
+            "CET1 ratio",
+            "Total capital ratio",
+            "Risk weighted assets"
+        ],
+        "thresholds": {
+            "CRAR": ">= 9",
+            "Tier 1 ratio": ">= 7"
+        },
+        "llm_instruction": "Extract CRAR, CET1 and Tier 1 ratios. Verify that minimum RBI Basel III thresholds are met.",
+        "weight": 10,
+        "severity": "critical",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_liquidity_coverage",
+        "framework": "rbi",
+        "name": "RBI - Liquidity Coverage Ratio",
+        "description": "Banks must maintain adequate liquidity to meet short-term obligations",
+        "requirements": "Disclosure of LCR, high quality liquid assets, net cash outflows",
+        "keywords": [
+            "liquidity",
+            "lcr",
+            "liquid assets",
+            "cash outflows"
+        ],
+        "synonyms": [
+            "liquidity coverage ratio",
+            "hqlA",
+            "high quality liquid assets",
+            "net cash outflow",
+            "stress liquidity",
+            "liquidity risk",
+            "short term funding",
+            "treasury assets",
+            "liquidity buffer",
+            "basel liquidity norms"
+        ],
+        "rule_type": "ratio_validation",
+        "evidence_type": "numeric",
+        "expected_sections": [
+            "liquidity risk management",
+            "liquidity coverage",
+            "liquidity ratios"
+        ],
+        "expected_tables": [
+            "liquidity coverage ratio table"
+        ],
+        "numeric_fields": [
+            "LCR",
+            "High quality liquid assets",
+            "Net cash outflows"
+        ],
+        "thresholds": {
+            "LCR": ">= 100"
+        },
+        "llm_instruction": "Extract liquidity coverage ratio and confirm it meets minimum regulatory requirement. Validate presence of HQLA and net cash outflow calculations.",
+        "weight": 8,
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "rbi_large_exposures",
+        "framework": "rbi",
+        "name": "RBI - Large Exposures Framework",
+        "description": "Limits on bank's exposure to single and group borrowers",
+        "requirements": "Disclosure of large exposures, concentration risk, exposure limits",
+        "keywords": [
+            "large exposures",
+            "concentration risk",
+            "exposure limits",
+            "borrower"
+        ],
+        "synonyms": [
+            "single borrower exposure",
+            "group borrower exposure",
+            "credit concentration",
+            "counterparty risk",
+            "top exposures",
+            "sectoral exposure",
+            "loan concentration",
+            "exposure ceiling",
+            "credit risk exposure",
+            "limit utilization"
+        ],
+        "rule_type": "table_presence",
+        "evidence_type": "table",
+        "expected_sections": [
+            "credit risk",
+            "risk concentration",
+            "large exposures",
+            "exposure management"
+        ],
+        "expected_tables": [
+            "top exposures table",
+            "borrower concentration table"
+        ],
+        "numeric_fields": [
+            "largest borrower exposure",
+            "group exposure percentage"
+        ],
+        "thresholds": {},
+        "llm_instruction": "Check for disclosure tables showing borrower/group exposure concentration and verify that exposure limits are reported.",
+        "weight": 7,
+        "severity": "high",
+        "mandatory": true
+    }
+]

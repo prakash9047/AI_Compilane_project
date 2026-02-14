@@ -7,6 +7,15 @@ import pandas as pd
 from datetime import datetime
 import json
 
+# Import chart components
+from components.charts import (
+    create_compliance_gauge,
+    create_severity_pie_chart,
+    create_severity_bar_chart,
+    create_rule_compliance_breakdown,
+    create_framework_comparison
+)
+
 # API Configuration
 API_BASE_URL = "http://localhost:8000/api/v1"
 
@@ -143,6 +152,37 @@ with col2:
             if summary.get('medium_issues', 0) > 0:
                 st.info(f"🟡 Medium Issues: {summary['medium_issues']}")
             
+            # ============================================
+            # INLINE VISUALIZATIONS
+            # ============================================
+            st.markdown("---")
+            st.subheader("📊 Visual Analytics")
+            
+            # Compliance Gauge
+            gauge_fig = create_compliance_gauge(
+                summary.get('compliance_score', 0),
+                "Compliance Score"
+            )
+            st.plotly_chart(gauge_fig, use_container_width=True)
+            
+            # Severity Distribution
+            severity_counts = {
+                'Critical': summary.get('critical_issues', 0),
+                'High': summary.get('high_issues', 0),
+                'Medium': summary.get('medium_issues', 0),
+                'Low': summary.get('low_issues', 0)
+            }
+            
+            # Remove zero counts
+            severity_counts = {k: v for k, v in severity_counts.items() if v > 0}
+            
+            if severity_counts:
+                st.subheader("Issue Severity Breakdown")
+                pie_fig = create_severity_pie_chart(severity_counts)
+                st.plotly_chart(pie_fig, use_container_width=True)
+            else:
+                st.success("🎉 No issues found - 100% compliant!")
+            
         else:
             st.info("No validation results yet. Run validation first.")
     except:
@@ -234,33 +274,84 @@ with col3:
                     st.error(f"❌ Error: {str(e)}")
 
 # ============================================
-# BOTTOM: DETAILED RESULTS TABLE
+# FULL-WIDTH VISUALIZATION SECTION
 # ============================================
 st.markdown("---")
-st.header("📋 Detailed Validation Results")
 
 if st.session_state.get('validated_doc'):
+    st.header("📊 Detailed Visual Analytics")
+    
     try:
+        # Get validation results for charts
         response = requests.get(f"{API_BASE_URL}/validation/{st.session_state['validated_doc']}/results")
-        if response.status_code == 200:
+        summary_response = requests.get(f"{API_BASE_URL}/validation/{st.session_state['validated_doc']}/summary")
+        
+        if response.status_code == 200 and summary_response.status_code == 200:
             results = response.json()
+            summary = summary_response.json()
+            
             if results:
-                df = pd.DataFrame(results)
+                # Create tabs for different visualizations
+                viz_tabs = st.tabs(["📋 Rule Analysis", "🎯 Framework Comparison", "📄 Data Table"])
                 
-                # Filter options
-                filter_col1, filter_col2 = st.columns(2)
-                with filter_col1:
-                    status_filter = st.multiselect(
-                        "Filter by Status",
-                        options=df['status'].unique() if 'status' in df.columns else [],
-                        default=df['status'].unique() if 'status' in df.columns else []
-                    )
-                with filter_col2:
-                    severity_filter = st.multiselect(
-                        "Filter by Severity",
-                        options=df['severity'].unique() if 'severity' in df.columns else [],
-                        default=df['severity'].unique() if 'severity' in df.columns else []
-                    )
+                with viz_tabs[0]:
+                    # Rule Breakdown
+                    st.subheader("Top Failed Rules")
+                    
+                    # Prepare rule data
+                    df_results = pd.DataFrame(results)
+                    failed_rules = df_results[df_results['status'] != 'compliant']
+                    
+                    if not failed_rules.empty:
+                        rule_counts = failed_rules['rule_name'].value_counts().reset_index()
+                        rule_counts.columns = ['rule_name', 'fail_count']
+                        rule_data = rule_counts.to_dict('records')
+                        
+                        rule_fig = create_rule_compliance_breakdown(rule_data)
+                        st.plotly_chart(rule_fig, use_container_width=True)
+                    else:
+                        st.success("🎉 All rules passed! No failures to display.")
+                
+                with viz_tabs[1]:
+                    # Framework comparison if multiple frameworks
+                    if 'framework' in df_results.columns:
+                        st.subheader("Compliance by Framework")
+                        framework_stats = {}
+                        for framework in df_results['framework'].unique():
+                            fw_data = df_results[df_results['framework'] == framework]
+                            framework_stats[framework] = {
+                                'passed': len(fw_data[fw_data['status'] == 'compliant']),
+                                'failed': len(fw_data[fw_data['status'] != 'compliant'])
+                            }
+                        
+                        if len(framework_stats) > 0:
+                            fw_fig = create_framework_comparison(framework_stats)
+                            st.plotly_chart(fw_fig, use_container_width=True)
+                        else:
+                            st.info("Run validation to see framework comparison")
+                    else:
+                        st.info("Run validation to see framework comparison")
+                
+                with viz_tabs[2]:
+                    # Data table
+                    st.subheader("Detailed Results Table")
+                    
+                    df = pd.DataFrame(results)
+                    
+                    # Filter options
+                    filter_col1, filter_col2 = st.columns(2)
+                    with filter_col1:
+                        status_filter = st.multiselect(
+                            "Filter by Status",
+                            options=df['status'].unique() if 'status' in df.columns else [],
+                            default=df['status'].unique() if 'status' in df.columns else []
+                        )
+                    with filter_col2:
+                        severity_filter = st.multiselect(
+                            "Filter by Severity",
+                            options=df['severity'].unique() if 'severity' in df.columns else [],
+                            default=df['severity'].unique() if 'severity' in df.columns else []
+                        )
                 
                 # Apply filters
                 if status_filter and 'status' in df.columns:

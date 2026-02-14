@@ -2,7 +2,6 @@
 ChromaDB client for vector storage and retrieval.
 """
 import chromadb
-from chromadb.config import Settings
 from typing import List, Dict
 from loguru import logger
 
@@ -14,10 +13,10 @@ class ChromaClient:
     
     def __init__(self):
         """Initialize ChromaDB client."""
-        self.client = chromadb.Client(Settings(
-            persist_directory=app_settings.CHROMA_PERSIST_DIRECTORY,
-            anonymized_telemetry=False
-        ))
+        # Use PersistentClient for proper persistence
+        self.client = chromadb.PersistentClient(
+            path=app_settings.CHROMA_PERSIST_DIRECTORY
+        )
         
         # Get or create collection
         self.collection = self.client.get_or_create_collection(
@@ -26,6 +25,8 @@ class ChromaClient:
         )
         
         logger.info(f"ChromaDB initialized: {app_settings.CHROMA_COLLECTION_NAME}")
+        logger.info(f"Collection count: {self.collection.count()}")
+
     
     def add_documents(
         self,

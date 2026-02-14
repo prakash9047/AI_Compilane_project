@@ -41,7 +41,7 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: Optional[str] = None
     ANTHROPIC_API_KEY: Optional[str] = None
     LLM_PROVIDER: str = "openai"
-    LLM_MODEL: str = "gpt-4-turbo-preview"
+    LLM_MODEL: str = "gpt-4o-mini"
     EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
     MAX_TOKENS: int = 4096
     TEMPERATURE: float = 0.1
@@ -58,7 +58,7 @@ class Settings(BaseSettings):
     MAX_CONCURRENT_TASKS: int = 5
     
     # Paths
-    COMPLIANCE_RULES_PATH: str = "./data/compliance_rules"
+    COMPLIANCE_RULES_PATH: str = "./backend/data/compliance_rules"
     UPLOAD_DIR: str = "./data/raw"
     PROCESSED_DIR: str = "./data/processed"
     REPORT_DIR: str = "./data/reports"
@@ -67,10 +67,16 @@ class Settings(BaseSettings):
     PROMETHEUS_PORT: int = 9090
     ENABLE_METRICS: bool = True
     
+    # Additional fields from .env
+    ALGORITHM: str = "HS256"
+    STREAMLIT_SERVER_PORT: int = 8501
+    STREAMLIT_SERVER_ADDRESS: str = "0.0.0.0"
+    
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file="../.env",
         env_file_encoding="utf-8",
-        case_sensitive=True
+        case_sensitive=True,
+        extra="allow"
     )
     
     @validator("BACKEND_CORS_ORIGINS", pre=True)

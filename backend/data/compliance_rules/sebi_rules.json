@@ -1,0 +1,276 @@
+[
+    {
+        "id": "sebi_lodr_reg17",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 17 - Board Composition",
+        "description": "Composition of the Board of Directors with optimum executive/non-executive mix",
+        "requirements": "Minimum 6 directors (for top 2000), at least one woman director, and 33-50% independent directors depending on Chairperson status.",
+        "keywords": [
+            "board composition",
+            "independent directors",
+            "woman director",
+            "executive director"
+        ],
+        "synonyms": [
+            "board structure",
+            "director category",
+            "non-executive",
+            "board strength"
+        ],
+        "rule_type": "table_presence",
+        "evidence_type": "table",
+        "expected_sections": [
+            "corporate governance report",
+            "board of directors"
+        ],
+        "expected_tables": [
+            "composition of board",
+            "attendance of directors"
+        ],
+        "numeric_fields": [
+            "total directors",
+            "number of independent directors"
+        ],
+        "llm_instruction": "Check the Board Composition table. Verify at least one woman director and that independent directors meet the 33% (non-executive chair) or 50% (executive chair) threshold.",
+        "weight": 10,
+        "severity": "critical",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_lodr_reg18",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 18 - Audit Committee",
+        "description": "Constitution and functioning of the Audit Committee",
+        "requirements": "Minimum 3 directors, two-thirds independent, all financially literate.",
+        "keywords": [
+            "audit committee",
+            "financial literacy",
+            "independent directors"
+        ],
+        "synonyms": [
+            "audit panel",
+            "committee composition"
+        ],
+        "rule_type": "section_presence",
+        "evidence_type": "table_or_section",
+        "expected_sections": [
+            "audit committee",
+            "committees of the board"
+        ],
+        "numeric_fields": [
+            "committee size",
+            "independent member count"
+        ],
+        "llm_instruction": "Verify the Audit Committee has at least 3 members and 2/3rds are independent. Confirm if the Chairperson is an Independent Director.",
+        "weight": 9,
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_lodr_reg19",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 19 - Nomination and Remuneration Committee",
+        "description": "NRC constitution and policy disclosure",
+        "requirements": "Minimum 3 directors, all non-executive, at least 50% independent.",
+        "keywords": [
+            "nrc",
+            "nomination",
+            "remuneration policy"
+        ],
+        "synonyms": [
+            "remuneration committee",
+            "personnel committee"
+        ],
+        "rule_type": "disclosure_text",
+        "evidence_type": "section",
+        "expected_sections": [
+            "nomination and remuneration committee",
+            "remuneration policy"
+        ],
+        "llm_instruction": "Extract the NRC composition and ensure at least 50% are independent. Check for the presence of a performance evaluation criteria for directors.",
+        "weight": 8,
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_lodr_reg24",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 24 - Material Subsidiaries",
+        "description": "Corporate governance requirements for subsidiary companies",
+        "requirements": "At least one independent director of the holding company on the board of unlisted material subsidiaries.",
+        "keywords": [
+            "material subsidiary",
+            "unlisted subsidiary",
+            "subsidiary governance"
+        ],
+        "synonyms": [
+            "step-down subsidiary",
+            "controlled entities"
+        ],
+        "rule_type": "disclosure_text",
+        "evidence_type": "paragraph",
+        "expected_sections": [
+            "subsidiary monitoring",
+            "corporate governance"
+        ],
+        "llm_instruction": "Confirm if the company has a 'Policy for determining Material Subsidiaries' and if an independent director is placed on the subsidiary's board.",
+        "weight": 7,
+        "severity": "medium",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_lodr_reg25",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 25 - Independent Directors Obligations",
+        "description": "Familiarization programs and separate meetings for ID",
+        "requirements": "Hold at least one separate meeting of IDs per year; D&O Insurance for IDs (top 1000).",
+        "keywords": [
+            "independent directors meeting",
+            "familiarization program",
+            "d&o insurance"
+        ],
+        "synonyms": [
+            "id meeting",
+            "training for directors"
+        ],
+        "rule_type": "disclosure_text",
+        "evidence_type": "paragraph",
+        "expected_sections": [
+            "independent directors",
+            "familiarization of ids"
+        ],
+        "llm_instruction": "Verify that a separate meeting of Independent Directors was held during the year and look for mention of D&O insurance coverage.",
+        "weight": 7,
+        "severity": "medium",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_lodr_reg27",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 27 - Corporate Governance Report",
+        "description": "Quarterly and annual submission of compliance report",
+        "requirements": "Presence of a separate section on Corporate Governance in the Annual Report.",
+        "keywords": [
+            "corporate governance report",
+            "compliance certificate"
+        ],
+        "synonyms": [
+            "cg report",
+            "governance disclosures"
+        ],
+        "rule_type": "section_presence",
+        "evidence_type": "section",
+        "expected_sections": [
+            "report on corporate governance"
+        ],
+        "llm_instruction": "Confirm the presence of a comprehensive Corporate Governance Report and a compliance certificate from either auditors or a practicing company secretary.",
+        "weight": 10,
+        "severity": "critical",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_lodr_reg30",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 30 - Material Events Disclosure",
+        "description": "Disclosure of events based on materiality policy",
+        "requirements": "Disclosure of acquisitions, schemes, or litigation impacting more than 2% of turnover/net worth.",
+        "keywords": [
+            "materiality policy",
+            "disclosure of events",
+            "price sensitive information"
+        ],
+        "synonyms": [
+            "material events",
+            "upsi",
+            "significant events"
+        ],
+        "rule_type": "disclosure_text",
+        "evidence_type": "paragraph",
+        "expected_sections": [
+            "management discussion",
+            "directors report"
+        ],
+        "llm_instruction": "Identify any 'Material Events' disclosed during the year and verify if the company has a Board-approved Materiality Policy.",
+        "weight": 9,
+        "severity": "high",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_lodr_reg34",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 34 - Annual Report Contents",
+        "description": "Mandatory components of the Annual Report",
+        "requirements": "Must include Management Discussion and Analysis (MD&A) and Business Responsibility Report.",
+        "keywords": [
+            "management discussion and analysis",
+            "mda",
+            "annual report components"
+        ],
+        "synonyms": [
+            "operational review",
+            "directors' discussion"
+        ],
+        "rule_type": "section_presence",
+        "evidence_type": "section",
+        "expected_sections": [
+            "management discussion and analysis",
+            "financial highlights"
+        ],
+        "llm_instruction": "Check for the MD&A section and verify it covers industry structure, opportunities, threats, and risks.",
+        "weight": 10,
+        "severity": "critical",
+        "mandatory": true
+    },
+    {
+        "id": "sebi_lodr_reg43A",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 43A - Dividend Distribution Policy",
+        "description": "Policy for dividend declaration (Top 1000 entities)",
+        "requirements": "Formulation and disclosure of a dividend distribution policy in the annual report and website.",
+        "keywords": [
+            "dividend policy",
+            "dividend distribution",
+            "payout ratio"
+        ],
+        "synonyms": [
+            "dividend criteria",
+            "profit distribution policy"
+        ],
+        "rule_type": "disclosure_text",
+        "evidence_type": "paragraph",
+        "expected_sections": [
+            "dividend",
+            "directors report"
+        ],
+        "llm_instruction": "Verify if the company has disclosed the Dividend Distribution Policy and mentions specific financial parameters considered for dividend declaration.",
+        "weight": 6,
+        "severity": "medium",
+        "mandatory": false
+    },
+    {
+        "id": "sebi_lodr_reg46",
+        "framework": "sebi",
+        "name": "SEBI LODR Regulation 46 - Website Disclosures",
+        "description": "Maintenance of functional website with specific information",
+        "requirements": "Mandatory disclosure of financial results, shareholding, and policies on the company website.",
+        "keywords": [
+            "website disclosure",
+            "functional website",
+            "online repository"
+        ],
+        "synonyms": [
+            "web link",
+            "investor relations page"
+        ],
+        "rule_type": "disclosure_text",
+        "evidence_type": "paragraph",
+        "expected_sections": [
+            "corporate information",
+            "investor information"
+        ],
+        "llm_instruction": "Ensure the report mentions the website URL and confirms that all mandatory policies (RPT, Materiality, NRC) are hosted online.",
+        "weight": 7,
+        "severity": "medium",
+        "mandatory": true
+    }
+]

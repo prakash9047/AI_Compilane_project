@@ -1,6 +1,7 @@
 """
 Report generation API endpoints.
 """
+import os
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -36,17 +37,21 @@ async def generate_report(
     if not document:
         raise HTTPException(status_code=404, detail="Document not found")
     
-    # Trigger report generation
-    task = generate_report_task.delay(document_id, report_type)
-    
-    logger.info(f"Report generation task started: {task.id}")
-    
-    return {
-        "document_id": document_id,
-        "report_type": report_type,
-        "task_id": task.id,
-        "message": "Report generation started"
-    }
+    # Generate report directly (no Celery)
+    try:
+        result = await generate_report_task(document_id, report_type)
+        logger.info(f"Report generated: {result}")
+        
+        return {
+            "document_id": document_id,
+            "report_type": report_type,
+            "report_id": result.get("report_id"),
+            "compliance_score": result.get("compliance_score"),
+            "message": "Report generated successfully"
+        }
+    except Exception as e:
+        logger.error(f"Report generation failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get("/{document_id}/reports")
@@ -111,14 +116,19 @@ async def download_report(
     else:
         raise HTTPException(status_code=400, detail="Invalid format. Use: pdf, excel, or json")
     
-    if not file_path or not os.path.exists(file_path):
-        raise HTTPException(status_code=404, detail=f"Report file not found in {format} format")
+    if not file_path:
+        raise HTTPException(status_code=404, detail=f"Report file not generated in {format} format")
+    
+    # Normalize path for cross-platform compatibility
+    file_path = os.path.normpath(file_path)
+    
+    if not os.path.exists(file_path):
+        logger.error(f"Report file not found at path: {file_path}")
+        raise HTTPException(status_code=404, detail=f"Report file not found at: {file_path}")
     
     return FileResponse(
         path=file_path,
         filename=f"compliance_report_{report_id}.{format}",
-        media_type="application/octet-stream"
+        media_type="application/pdf" if format == "pdf" else "application/octet-stream"
     )
 
-
-import os

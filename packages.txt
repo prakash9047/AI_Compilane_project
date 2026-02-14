@@ -1,0 +1,9 @@
+# System packages required for Streamlit Cloud deployment
+# This file lists apt packages to be installed
+
+tesseract-ocr
+tesseract-ocr-eng
+tesseract-ocr-hin
+poppler-utils
+libgl1-mesa-glx
+libglib2.0-0
