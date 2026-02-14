@@ -15,9 +15,21 @@ class RAGPipeline:
     
     def __init__(self):
         """Initialize RAG pipeline."""
-        self.embedding_model = SentenceTransformer(settings.EMBEDDING_MODEL)
+        self._embedding_model = None
         self.chroma_client = ChromaClient()
-        logger.info(f"RAG pipeline initialized with model: {settings.EMBEDDING_MODEL}")
+        logger.info("RAG pipeline initialized (lazy loading enabled)")
+    
+    @property
+    def embedding_model(self):
+        """Lazy load embedding model."""
+        if self._embedding_model is None:
+            try:
+                self._embedding_model = SentenceTransformer(settings.EMBEDDING_MODEL)
+                logger.info(f"Embedding model loaded: {settings.EMBEDDING_MODEL}")
+            except Exception as e:
+                logger.error(f"Failed to load embedding model: {e}")
+                raise
+        return self._embedding_model
     
     def embed_text(self, text: str) -> List[float]:
         """Generate embedding for text."""
