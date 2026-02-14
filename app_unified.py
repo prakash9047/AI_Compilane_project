@@ -484,7 +484,7 @@ with col3:
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 try:
-                    # Prepare request payload matching backend ChatRequest schema
+                    # Prepare request for /api/v1/chat/ask
                     payload = {
                         "question": prompt,
                         "session_id": st.session_state.get("session_id", "default_session"),
@@ -493,9 +493,8 @@ with col3:
                     
                     # Add document context if available
                     if st.session_state.get('validated_doc'):
-                        payload["document_id"] = st.session_state['validated_doc']
+                        payload["document_id"] = int(st.session_state['validated_doc'])
                     
-                    # Call correct endpoint: /chat/ask
                     response = requests.post(
                         f"{API_BASE_URL}/chat/ask",
                         json=payload
@@ -503,16 +502,15 @@ with col3:
                     
                     if response.status_code == 200:
                         data = response.json()
-                        # Backend returns {"answer": "...", "sources": ...}
                         answer = data.get("answer", "I couldn't generate a response.")
                         st.markdown(answer)
                         
-                        # Show sources if available
+                        # Show sources if any
                         if data.get("sources"):
                             with st.expander("📚 Sources"):
                                 for source in data["sources"]:
-                                    st.markdown(f"- {source.get('content', '')[:200]}...")
-                                    
+                                    st.markdown(f"- {source.get('content', '')[:100]}... (Score: {source.get('score', 0):.2f})")
+                        
                         # Add assistant response to chat history
                         st.session_state.messages.append({"role": "assistant", "content": answer})
                     else:
