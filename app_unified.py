@@ -458,6 +458,65 @@ with col3:
                 except Exception as e:
                     st.error(f"❌ Error: {str(e)}")
 
+    st.markdown("---")
+    st.subheader("💬 Step 4: AI Chat Assistant")
+    
+    # Initialize chat history
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+
+    # React to user input
+    if prompt := st.chat_input("Ask a question about your documents..."):
+        # Display user message in chat message container
+        st.chat_message("user").markdown(prompt)
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                try:
+                    # distinct chat handling if document is selected vs general
+                    params = {"query": prompt}
+                    # If we have a validated doc context, we could pass it, but generic search is fine too
+                    
+                    response = requests.post(
+                        f"{API_BASE_URL}/chat/",
+                        json={"message": prompt, "history": st.session_state.messages[:-1]}
+                    )
+                    
+                    if response.status_code == 200:
+                        data = response.json()
+                        answer = data.get("response", "I couldn't generate a response.")
+                        st.markdown(answer)
+                        # Add assistant response to chat history
+                        st.session_state.messages.append({"role": "assistant", "content": answer})
+                    else:
+                        st.error(f"Error: {response.text}")
+                except Exception as e:
+                    # Fallback for now if backend chat endpoint isn't ready or fails
+                    # We can use the search endpoint as a simple RAG fallback
+                    try: 
+                        search_response = requests.get(
+                            f"{API_BASE_URL}/search/",
+                            params={"query": prompt, "n_results": 3}
+                        )
+                        if search_response.status_code == 200:
+                            results = search_response.json().get('results', [])
+                            context = "\n".join([r.get('text', '') for r in results])
+                            fallback_msg = f"Based on the documents found:\n\n{context[:500]}..."
+                            st.markdown(fallback_msg)
+                            st.session_state.messages.append({"role": "assistant", "content": fallback_msg})
+                        else:
+                             st.error(f"Failed to get response: {str(e)}")
+                    except:
+                        st.error(f"Connection error: {str(e)}")
+
+
 # ============================================
 # FULL-WIDTH VISUALIZATION SECTION
 # ============================================
